@@ -1,0 +1,3 @@
+operic;perkan;Ognjen;Peric;Prodavac;548756;Novi Sad;perico@gmail.com
+prodavac;prodavac;Prodavac;Prodavac;Prodavac;548562;Futog;p@gmail.com
+prodavac2;prodavac2;Prodavac2;Prodavac2;Prodavac;845212;Beograd;p2@gmail.com

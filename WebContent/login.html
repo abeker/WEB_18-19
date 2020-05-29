@@ -1,0 +1,908 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="login_stil.css">
+	<script src="jquery-3.3.1.min.js"></script>
+    <script src="kupac.js"></script>
+    <script src="login.js"></script>
+    <script src="prodavac.js"></script>
+    <script src="admin.js"></script>
+    <script src="oglas.js"></script>
+    <script src="pretraga.js"></script>
+    <script src="korisnik_poruka.js"></script>
+    <script src="poruke.js"></script>
+    <script src="recenzija.js"></script>
+    <script src="prodavac2.js"></script>
+    <title>WEB - kupovina</title>
+</head>
+<body>
+
+<!-- ************************ ZAGLAVLJE I STRANA ******************************************** -->
+    <ul id="zaglavlje">
+        <li class="zagl" id="pocetna"><a>Web-kupovina</a></li>
+        <li class="zagl" id="id_korisnici"><a>Korisnici</a></li>
+        <li class="zagl" id="korisnickaProdavac" hidden="true"><a>Korisnicka stranica</a></li>
+        <li class="zagl" id="korisnickaKupac" hidden="true"><a>Korisnicka stranica</a></li>
+        <li class="zagl" hidden="true" id="list_recenzija"><a>Lista recenzija</a></li>
+        <li class="zagl" hidden="true" id="modifikacija"><a>Modifikacija kategorija</a></li>
+        
+        <li class="zagl" hidden="true" id="porAdmin"><a>Poruke</a></li>
+        <li class="zagl" hidden="true" id="porProdavac"><a>Poruke</a></li>
+        <li class="zagl" hidden="true" id="porKupac"><a>Poruke</a></li>
+
+        <li class="zagl" id="li_logout" hidden="true"><a href="login.html">Odjavi se</a></li>
+        <li class="zagl" id="li_login"><a href="login.html">Prijavi se na nalog</a></li>
+    </ul>
+
+    <ul id="strana">
+        <li class="str" id="first_child"><a>Najpopularnije</a></li>
+        <li class="str" id="li_pretraga"><a>Pretrazi oglase</a></li>
+        <li class="str" id="a_kat"><a>Kategorije:</a></li>
+        <div id="kat"></div>
+        <li class="str" hidden="true" id="li_prijavljeni"><a>Prijavljeni nalozi</a></li>
+        <li class="str" hidden="true" id="post_oglas"><a>Postavi oglas</a></li>
+        <li class="str" hidden="true" id="filtriraj_oglase"><a>Filtriraj:</a></li>
+        <div id="kupac_liste" hidden="true">
+            <li class="str" id="lista_omiljenih"><a>Omiljeni oglasi</a></li>
+            <li class="str" id="lista_porucenih"><a>Poruceni oglasi</a></li>
+            <li class="str" id="lista_dostavljenih"><a>Dostavljeni oglasi</a></li>
+        </div>
+        <div id="filter" hidden="true">
+            <li class="str" id="aktivni_oglasi"><a>Aktivni</a></li>
+            <li class="str" id="uRealizaciji_oglasi"><a>U realizaciji</a></li>
+            <li class="str" id="dostavljeni_oglasi"><a>Dostavljeni</a></li>
+        </div>
+    </ul>
+    
+<!-- ************************ PRIJAVA I REGISTRACIJA ****************************************** -->
+    <div class="div_reg" id="div_prijava">
+        <h1>Prijava korisnika</h1></br>
+        <form id="forma">
+            <table>
+                <tr>
+                    <th>Korisnicko ime: </th>
+                    <td><input type="text" name="username"></td>
+                </tr>
+                <tr>
+                    <th>Lozinka: </th>
+                    <td><input type="password" name="password"></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><p align="right" id="err" style="color: red"></p></td> 
+                </tr>
+                <tr><td colspan="2">&nbsp;</td></tr>
+                <tr>
+                    <td colspan="2" id="submit_prijava"><input type="submit" value=" Prijavi se "></td> 
+                </tr>
+            </table>
+        </form>
+
+        </br>
+    </div>
+
+    <div id="dugme_reg">
+        <h2>Ukoliko nemate nalog, registrujte se</h2>
+        <button id="btn_reg">Registracija</button>
+        <p id="nalog_por">Neophodno za postavljanje oglasa i razmenu poruka.</p>
+    </div>
+    
+    <div class="div_reg" hidden="true" id="div_registracija">
+        <h1>Registracija korisnika</h1></br>
+        
+        <form id="forma_reg">
+                <table id="tabela_reg">
+                    <tr>
+                        <th>Korisnicko ime:* </th>
+                        <td><input type="text" name="username_reg"></td>
+                    </tr>
+                    <tr>
+                        <th>Lozinka:* </th>
+                        <td><input type="password" name="password_reg"></td>
+                    </tr>
+                    <tr>
+                        <th>Ime:* </th>
+                        <td><input type="text" name="ime_reg" id="ime"></td>
+                    </tr>
+                    <tr>
+                        <th>Prezime:* </th>
+                        <td><input type="text" name="prezime_reg"></td>
+                    </tr>
+                    <tr>
+                        <th>Kontakt telefon:* </th>
+                        <td><input type="number" name="tel_reg"></td>
+                    </tr>
+                    <tr>
+                        <th>Grad:* </th>
+                        <td><input type="text" name="grad_reg"></td>
+                    </tr>
+                    <tr>
+                        <th>E-mail:* </th>
+                        <td><input type="text" name="mail_reg"></td>
+                    </tr>
+                    
+                    <tr><td colspan="2"><p align="right" id="errReg" class="errorMsg"></p></td></tr>
+                    <tr><td colspan="2">&nbsp;</td></tr>
+                    <tr>
+                        <td colspan="2" id="submit_reg"><input type="submit" value=" Registruj se "></td> 
+                    </tr>
+                    <tr>
+                        <td colspan="2"><p align="left" class="footerMsg">* - polja ciji je unos neophodan</p></td> 
+                    </tr>
+            </table>
+        </form>
+    </div>
+
+
+<!-- ******************************** KATEGORIJE ********************************************** -->
+
+<div class="div_reg" id="div_kategorije" hidden="true">
+        <table id="tab_kat" align="center" cellpadding="15">
+            <thead>
+                <th>Naziv kategorije</th>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        </br>
+        
+        <button id="add_kat" class="obican_btn">Dodaj</button>
+        <button id="izm_kat" class="obican_btn">Izmeni</button>
+        <button id="obrisi_kat" class="obican_btn">Obrisi</button>
+        <!-- The Modal -->
+        <div id="mod_addKat" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>Dodavanje kategorije</h2>
+            </div>
+            <div class="modal-body">
+                <form id="forma_dodajKat">
+                    <table>
+                       <tr>
+                           <th>Naziv:</th>
+                           <td><input type="text" name="naziv_kat"></td>
+                        </tr>
+                        <tr>
+                            <th>Opis:</th>
+                            <td><textarea id="opis_kat" rows="7" cols="30"></textarea></td>
+                        </tr>
+                        <tr>
+                            <th>Lista oglasa:</th>
+                            <td>
+                                <select multiple class="multi_select" id="list_oglasa">
+                                </select>
+                            </td>
+                        </tr> 
+                    </table>
+                </form>
+            </div>
+                <div class="modal-footer">
+                <button id="dodaj_kat" class="obican_btn">Dodaj</button>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <!-- The Modal -->
+    <div id="mod_izmenaKat" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>Izmena kategorije</h2>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <table>
+                       <tr>
+                           <th>Naziv:</th>
+                           <td><input type="text" name="naziv_izmena"></td>
+                        </tr>
+                        <tr>
+                            <th>Opis:</th>
+                            <td><textarea id="opis_izmena" rows="7" cols="30"></textarea></td>
+                        </tr>
+                        <tr>
+                            <th>Lista oglasa:</th>
+                            <td>
+                                <select multiple class="multi_select" id="list_izmena">
+                                </select>
+                            </td>
+                        </tr> 
+                    </table>
+                </form>
+            </div>
+                <div class="modal-footer">
+                <button id="izmeni_kat" class="obican_btn">Izmeni</button>
+            </div>
+          </div>
+        </div>
+    </div>
+    
+<!-- ******************************** OGLASI ********************************************** -->
+<!-- ***************** PRIKAZ ************************* -->
+<div id="detalji_oglasa" hidden="true">
+    <table cellpadding="30">
+        <tr>
+            <td width="200">
+                <h1 id="oglNaslov"></h1>
+            </td>
+            <td align="center" width="220">
+                <div id="pracenje">
+                    <button id="oglOmiljeni" hidden><img src="slike/star.png" title="Dodaj u listu omiljenih"> Omiljen</button>
+                    <button id="oglRecenzija"><img src="slike/recenzija.png" title="Napisi recenziju vezanu za oglas"> Recenzija</button>
+                    <button id="oglRecenzijaIzm"><img src="slike/exchange.png" title="Izmeni recenziju"> Izmeni</button>
+                    <button id="oglRecenzijaObr"><img src="slike/remove.png" width="24" height="24" title="Obrisi recenziju"> Obrisi</button>
+                </div>
+            </td>
+            <td>
+                <div id="like_disl">
+                    <img id="lajk" src="slike/like.png" title="Like" width="28" height="28">
+                    <img id="dislajk" src="slike/dislike.png" title="Dislike" width="28" height="28">
+                    <p id="p_like"></p>
+                </div>
+            </td>
+        </tr>
+        <tr>  
+            <td id="td_slika">
+                <img id="oglSlika" width="200" height="250">
+            </td>
+            <td class="detalji" width="340">
+                <p id="oglVlasnik" class="inlineV"></p>
+                <p id="oglOpis"></strong> </p>
+                <p id="oglGrad"></strong> </p>
+            </td>
+            <td class="detalji" width="250">
+                <p><strong>Datum postavljanja:</strong><input type="date" id="oglDatP" readonly> </p>
+                <p><strong>Datum isticanja:</strong><input type="date" id="oglDatI" readonly> </p>
+                <button id="oglButt">Posalji poruku</button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p id="oglCena"><strong>Cena:</strong> </p>
+            </td>
+            <td  width="220">
+                <button id="oglPoruciBtn">Poruci proizvod</button>
+                <button id="oglDostavljenBtn" title="Oznaci da je proizvod dostavljen.">Dostavljen</button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<!-- ***************** DODAVANJE *********************** -->
+<div id="mod_oglas" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>Dodaj oglas</h2>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <table>
+                       <tr>
+                           <th>Naziv:* </th>
+                           <td><input type="text" name="oNaziv"></td>
+                        </tr>
+                        <tr>
+                            <th>Opis:* </th>
+                            <td><textarea id="oOpis" rows="7" cols="30"></textarea></td>
+                        </tr>
+                        <tr>
+                            <th>Cena:* </th>
+                            <td><input type="number" name="oCena"></td>
+                        </tr> 
+                        <tr>
+                            <th>Grad:* </th>
+                            <td><input type="text" name="oGrad"></td>
+                        </tr> 
+                        <tr>
+                            <th>Oglas vazi do:* </th>
+                            <td><input type="date" name="oDatum"></td>
+                        </tr> 
+                        <tr>
+                            <th>Slika:* </th>
+                            <td><input type="file" id="oSlika"></td>
+                                <img id='img-upload'/>
+                        </tr>
+                        <tr><td colspan="2">&nbsp;</td></tr> 
+                        <tr>
+                            <td colspan="2"><p align="left" class="footerMsg">* - polja ciji je unos neophodan</p></td> 
+                        </tr>
+                    </table>
+                </form>
+            </div>
+                <div class="modal-footer">
+                <button id="oglas_dodaj" class="obican_btn">Dodaj</button>
+            </div>
+          </div>
+        </div>
+    </div>
+
+<!-- ***************** IZMENA *********************** -->
+    <div id="oglas_izmena" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="close">&times;</span>
+                    <h2>Izmeni oglas</h2>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <table>
+                           <tr>
+                               <th>Naziv:</th>
+                               <td><input type="text" name="iNaziv"></td>
+                            </tr>
+                            <tr>
+                                <th>Opis:</th>
+                                <td><textarea id="iOpis" rows="7" cols="30"></textarea></td>
+                            </tr>
+                            <tr>
+                                <th>Cena:</th>
+                                <td><input type="number" name="iCena"></td>
+                            </tr> 
+                            <tr>
+                                <th>Grad:</th>
+                                <td><input type="text" name="iGrad"></td>
+                            </tr> 
+                            <tr>
+                                <th>Oglas vazi do:</th>
+                                <td><input type="date" name="iDatum"></td>
+                            </tr> 
+                            <tr>
+                                <th>Slika:</th>
+                                <td><input type="file" id="iSlika"></td>
+                                    <img id='img-upload'/>
+                            </tr> 
+                        </table>
+                    </form>
+                </div>
+                    <div class="modal-footer">
+                    <button id="oglas_izmeni" class="obican_btn">Izmeni</button>
+                </div>
+              </div>
+            </div>
+        </div>
+
+<!-- ******************** RECENZIJA OGLASA ************************* -->
+<div id="recOglas" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>Recenzija oglasa</h2>
+        </div>
+        <div class="modal-body">
+            <form>
+                <table>
+                    <tr>
+                        <th>Naslov recenzije:</th>
+                        <td><input type="text" name="recNaslov"></td>
+                    </tr>
+                    <tr>
+                        <th>Sadrzaj recenzije:</th>
+                        <td><textarea id="recOpis" rows="7" cols="30"></textarea></td>
+                    </tr>
+                    <tr>
+                        <th>Slika:</th>
+                        <td>
+                            <input type="file" id="recSlika">
+                        </td>
+                    </tr> 
+                    <tr>
+                        <th>Tacan opis oglasa:</th>
+                        <td>
+                            DA<input type="radio" name="recTacanOpis" value="da" checked>
+                            NE<input type="radio" name="recTacanOpis" value="ne">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Ispostovan dogovor:</th>
+                        <td>
+                            DA<input type="radio" name="recDogovor" value="da" checked>
+                            NE<input type="radio" name="recDogovor" value="ne">
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+            <div class="modal-footer">
+            <button id="recPosalji" class="obican_btn">Posalji</button>
+        </div>
+        </div>
+    </div>
+</div>
+
+<!-- ********** RECENZIJA  PRODAVCA ************ -->
+<div id="recProdavac" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>Recenzija prodavca</h2>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <table>
+                        <tr>
+                            <th>Oznacite da li ste zadovoljni uslugama, odnosno</br>nacinom poslovanja prodavca:</th>
+                        </tr>
+                        <tr align="center">
+                            <td align="center">
+                                </br>DA, JESAM<input type="radio" name="recProd" value="da" checked></br>
+                                </br>NE, NISAM<input type="radio" name="recProd" value="ne">
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+                <div class="modal-footer">
+                <button id="recPosaljiProd" class="obican_btn">Posalji</button>
+            </div>
+            </div>
+        </div>
+    </div>
+
+<!-- ***************************** GLAVNA STRANA (PRODAVAC/KUPAC) ******************************** -->    
+<div id="glavna_strana" hidden>
+        <div id="zaglavlje_prodavac">
+            <h1 id="ime_prodavca" class="inlineProdavac"></h1>
+            <button id="oglPrijaviBtn" class="inlineProdavac" title="Prijava sumnjivog naloga">Prijavi</button>
+            <h3 id="like"></h3>
+        </div>
+        <div id="zaglavlje_kupac">
+            <h1 id="imePrezime_kupac"></h1>
+            <h2 id="username_kupac"></h2>
+        </div>
+        <table id="t_pocetna" cellpadding="30" cellspacing="20">
+            <tbody>
+            </tbody>
+        </table>
+        <div class="arrow" id="btnRecenzija" title="Prikazi recenzije" hidden>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
+<!-- ************************************ PRETRAGA ********************************************** -->
+<div id="mod_pretraga" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>Pretraga oglasa</h2>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <table id="tab_pretraga">
+                        <tr>
+                            <th>Naziv:</th>
+                            <td><input type="text" name="pNaziv"></td>
+                        </tr>
+                        <tr>
+                            <th>Cena:</th>
+                            <td>
+                                Od: <input class="opseg" type="number" name="cenaOd">
+                                Do: <input class="opseg" type="number" name="cenaDo">
+                                <p class="err" align="right" id="errCena"></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Pozitivne ocene:</th>
+                            <td>
+                                Od: <input class="opseg" type="number" name="ocenaOd">
+                                Do: <input class="opseg" type="number" name="ocenaDo">
+                                <p class="err" align="right" id="errOcena"></p>
+                            </td>
+                        </tr> 
+                        <tr>
+                            <th>Opseg datuma isticanja:</th>
+                            <td>
+                                Od: <input class="opseg" type="date" name="datumOd">
+                                Do: <input class="opseg" type="date" name="datumDo">
+                                <p class="err" align="right" id="errDatum"></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Grad:</th>
+                            <td>
+                                <select class="drop" id="pGrad"></select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Status oglasa:</th>
+                            <td>
+                                <select class="drop" id="pStatus">
+                                    <option></option>
+                                    <option>Aktivan</option>
+                                    <option>Dostavljen</option>
+                                    <option>U realizaciji</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button id="pretrazi" class="obican_btn">Pretrazi</button>
+            </div>
+          </div>
+        </div>
+    </div>
+
+<!-- ******************************* PROMENA ULOGE / PORUKE ************************************** -->
+
+<div id="t_korisnici" hidden="true">
+    <form>
+        <div id="pretraga_korisnika">
+            <input type="text" id="searchIme" placeholder="Unesite ime...">
+            <input type="text" id="searchGrad" placeholder="Unesite grad...">
+        </div>
+        <table id="tabela_korisnika">
+            <thead>
+                <tr>
+                    <th>Korisnicko ime</th>
+                    <th>Ime</th>
+                    <th>Prezime</th>
+                    <th>Uloga</th>
+                    <th>Kontakt</th>
+                    <th>Grad</th>
+                    <th>E-mail adresa</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </form>
+    <div id="kor_zaglavlje">
+        <img src="slike/message64.png" class="img_korisnici" width="42" height="42" id="id_poruka" title="Posalji poruku">
+        <img src="slike/change64.png" class="img_korisnici" width="42" height="42" id="id_uloga" title="Promeni ulogu">
+    </div>
+</div>
+
+<!-- **************** PORUKE ********************* -->
+<div id="slanje_poruke" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>Sastavi poruku</h2>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <table>
+                        <tr>
+                            <th>Primalac(username):</th>
+                            <td><input type="text" id="porPrimalac" readonly></td>
+                        </tr>  
+                        <tr>
+                           <th>Naslov poruke:</th>
+                           <td><input type="text" name="porNaslov"></td>
+                        </tr>
+                        <tr>
+                            <th>Sadrzaj:</th>
+                            <td><textarea id="porSadrzaj" rows="7" cols="30"></textarea></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+                <div class="modal-footer" id="prikazPoruke">
+                <button id="porPosalji" class="obican_btn">Posalji</button>
+            </div>
+          </div>
+        </div>
+    </div>
+
+<!-- ************* KOJE SE SALJU PRODAVCU ****************** -->
+    <div id="slanje_odg" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>Sastavi poruku</h2>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <table>
+                        <tr>
+                            <th>Primalac(username):</th>
+                            <td><input type="text" id="odgPrimalac" readonly></td>
+                        </tr>  
+                        <tr>
+                            <th>Vezano za oglas:</th>
+                            <td><input type="text" id="odgOglas" readonly></td>
+                        </tr>  
+                        <tr>
+                           <th>Naslov poruke:</th>
+                           <td><input type="text" name="odgNaslov"></td>
+                        </tr>
+                        <tr>
+                            <th>Sadrzaj:</th>
+                            <td><textarea id="odgSadrzaj" rows="7" cols="30"></textarea></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+                <div class="modal-footer" id="prikazPoruke">
+                <button id="odgPosalji" class="obican_btn">Posalji</button>
+            </div>
+          </div>
+        </div>
+    </div>
+
+<!-- **************** TABELA PORUKA ******************* -->
+    <div id="t_poruka" hidden> 
+        <div id="primljenePoruke">
+            <h2><ins>Primljene poruke</ins></h2>
+            <form>
+                <table id="tabela_poruka">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Naziv oglasa</th>
+                            <th>Naslov poruke</th>
+                            <th>Posiljalac</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </form>
+        </div>
+        <div id="poslatePoruke">
+            <h2 id="h2_poslate"><ins>Poslate poruke</ins></h2>
+            <form>
+                <table id="tabela_poslatih">
+                    <thead>
+                        <tr>
+                            <th>Status</th>
+                            <th>#</th>
+                            <th>Naziv oglasa</th>
+                            <th>Naslov poruke</th>
+                            <th>Primalac</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </form>
+        </div>
+    </div>
+
+    <div id="prikaz_poruke" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>Prikaz poruke</h2>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <table>
+                        <tr>
+                            <th>Posiljalac:</th>
+                            <td><p id="porukaPos"></p></td>
+                        </tr>  
+                        <tr>
+                            <th>Vezano za oglas:</th>
+                            <td><p id="porukaOgl"></p></td>
+                        </tr>  
+                        <tr>
+                           <th>Naslov poruke:</th>
+                           <td><p id="porukaNasl"></p></td>
+                        </tr>
+                        <tr>
+                            <th>Sadrzaj:</th>
+                            <td><p id="porukaSadr"></p></td>
+                        </tr>
+                        <tr>
+                            <th>Vreme:</th>
+                            <td><p id="porukaDat"></p></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <div id="izmena_poruke" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>Izmeni poruku</h2>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <table>
+                        <tr>
+                            <th>Primalac(username):</th>
+                            <td><input type="text" id="izmPrimalac" readonly></td>
+                        </tr>  
+                        <tr id="izm_naslov_ogl">
+                            <th>Vezano za oglas:</th>
+                            <td><input type="text" id="izmOglas" readonly></td>
+                        </tr>  
+                        <tr>
+                           <th>Naslov poruke:</th>
+                           <td><input type="text" name="izmNaslov"></td>
+                        </tr>
+                        <tr>
+                            <th>Sadrzaj:</th>
+                            <td><textarea id="izmSadrzaj" rows="7" cols="30"></textarea></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+                <div class="modal-footer">
+                <button id="izmenuPosalji" class="obican_btn">Izmeni</button>
+            </div>
+          </div>
+        </div>
+    </div>
+
+<!-- ****************************** LISTA RECENZIJA PRODAVCA *********************************** -->
+<div id="t_recenzija" hidden="true">
+    <form>
+        <table id="tabela_recenzija">
+            <thead>
+                <tr>
+                    <th>Oglas</th>
+                    <th>Naslov recenzije</th>
+                    <th>Recezent</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </form>
+</div>
+
+<div id="prodavac_recenzije" hidden>
+    <form>
+        <table id="tab_recenzija">
+            <thead>
+                <tr>
+                    <th>Oglas</th>
+                    <th>Naslov recenzije</th>
+                    <th>Tacan opis</th>
+                    <th>Ispostovan dogovor</th>
+                    <th>Recezent</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </form>
+</div>
+
+<div id="recenzija_prikaz" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>Recenzija</h2>
+        </div>
+        <div class="modal-body">
+            <form>
+                <table>
+                    <tr>
+                        <th>Naziv oglasa:</th>
+                        <td><p id="precOglas"></p></td>
+                    </tr> 
+                    <tr>
+                        <th>Recezent:</th>
+                        <td><p id="precRecezent"></p></td>
+                    </tr> 
+                    <tr>
+                        <th>Naslov recenzije:</th>
+                        <td><p id="precNaslov"></p></td>
+                    </tr> 
+                    <tr>
+                        <th>Sadrzaj recenzije:</th>
+                        <td><p id="precSadrzaj"></p></td>
+                    </tr> 
+                    <tr>
+                        <th>Slika:</th>
+                        <td><img id="precSlika" alt="Slika recezenta" width="100" height="100"></td>
+                    </tr>
+                    <tr>
+                        <th>Opis oglasa tacan: </th>
+                        <td><p id="precTacanOpis"></p></td>
+                    </tr>
+                    <tr>
+                        <th>Ispostovan dogovor: </th>
+                        <td><p id="precDogovor"></p></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+      </div>
+    </div>
+</div>
+
+<!-- ***** RECENZIJE PRODAVCA KOJE SE PRIKAZUJU KUPCU ***** -->
+<div id="kupac_rec" hidden="true">
+    <form>
+        <table id="tab_KupacRec">
+            <thead>
+                <tr>
+                    <th>Oglas</th>
+                    <th>Naslov recenzije</th>
+                    <th>Recezent</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </form>
+</div>
+
+<div id="recenzija_izmena" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>Izmena recenzije</h2>
+        </div>
+        <div class="modal-body">
+            <form>
+                <table>
+                    <tr>
+                        <th>Naslov recenzije:</th>
+                        <td><input type="text" name="recenNaslov"></td>
+                    </tr>
+                    <tr>
+                        <th>Sadrzaj recenzije:</th>
+                        <td><textarea id="recenOpis" rows="7" cols="30"></textarea></td>
+                    </tr>
+                    <tr>
+                        <th>Slika:</th>
+                        <td>
+                            <input type="file" id="recenSlika">
+                        </td>
+                    </tr> 
+                    <tr>
+                        <th>Tacan opis oglasa:</th>
+                        <td>
+                            DA<input type="radio" name="recenTacanOpis" id="recTda" value="da">
+                            NE<input type="radio" name="recenTacanOpis" id="recTne" value="ne">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Ispostovan dogovor:</th>
+                        <td>
+                            DA<input type="radio" name="recenDogovor" id="recDda" value="da">
+                            NE<input type="radio" name="recenDogovor" id="recDne" value="ne">
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+            <div class="modal-footer">
+            <button id="recenPosalji" class="obican_btn">Posalji</button>
+        </div>
+        </div>
+    </div>
+</div>
+
+<!-- ****************************** PRIJAVLJENI NALOZI *********************************** -->
+<div id="prijavljeni_nalozi" hidden="true">
+    <form>
+        <table id="tabela_prijavljeni">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Ime</th>
+                    <th>Prezime</th>
+                    <th>Grad</th>
+                    <th>E-mail</th>
+                    <th>Broj prijava</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </form>
+</div>
+
+</body>
+</html>

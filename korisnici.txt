@@ -1,0 +1,4 @@
+novi_kor;novi;Novi;Korisnik;Kupac;879456;Novi Sad;nk@gmail.com;1569427432812
+kupac2;kupac2;Kupac2;Kup2;Kupac;6222845;Beograd;k2@gmail.com;1567543816961
+kupac;kupac;kupac;kupac;Kupac;6221847;Novi Sad;kup@gmail.com;1567543778421
+kor;kor;kor;kor;Kupac;6221847;Futog;kor@gmail.com;1567543608031
